@@ -4,3 +4,4 @@ pandas
 dataset
 scikit-learn
 pillow
+seaborn

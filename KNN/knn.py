@@ -1,9 +1,17 @@
 import numpy as np
-from sklearn.datasets import load_iris
+
 from collections import Counter
+
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+
 import pandas as pd
+
+from sklearn.datasets import load_iris
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+
+import seaborn as sns
 
 import os
 
@@ -60,7 +68,11 @@ def plot_decision_regions(k, acc, x_train, label_train, y_test=None, label_test=
 
     plt.legend()
 
-    image_path = os.path.join(SAVE_IMAGE_PATH, "decision_region-k={}.png".format(k))
+    image_path = os.path.join(SAVE_IMAGE_PATH, "decision_region")
+    if not os.path.isdir(image_path):
+        os.makedirs(image_path)
+
+    image_path = os.path.join(image_path, "decision_region-k={}.png".format(k))
     print("Saving ==>> {}".format(image_path))
     plt.savefig(image_path)
 
@@ -122,6 +134,26 @@ def knn(k, y_test, x_train, label_train):
 def predict(pred, test):
     return np.sum(pred == test) / len(test)
 
+def get_confusion_matrix(k, y_test, y_pred):
+
+    plt.figure()
+    mat = confusion_matrix(y_test, y_pred)
+    sns.heatmap(mat, square=True, annot=True, cbar=False, fmt='d', cmap='RdPu')
+
+    plt.title('k={}'.format(k))
+    plt.xlabel('predicted class')
+    plt.ylabel('true value')
+
+    image_path = os.path.join(SAVE_IMAGE_PATH, "heatmap")
+    if not os.path.isdir(image_path):
+        os.makedirs(image_path)
+
+    image_path = os.path.join(image_path, "heatmap-k={}.png".format(k+1))
+
+    print("Saving ==>> {}".format(image_path))
+    plt.savefig(image_path)
+
+
 def main():
 
     k = 120
@@ -140,6 +172,7 @@ def main():
         acc_list.append([k_i+1, acc])
 
         plot_decision_regions(k_i+1, acc, x_train, label_train, y_test, label_test)
+        get_confusion_matrix(k_i, label_test, label_pred)
 
     df = pd.DataFrame(data=acc_list, columns=["k", "Accuracy"])
 
