@@ -20,5 +20,5 @@ https://deepage.net/features/numpy-neuralnetwork-2.html
 https://deepage.net/features/numpy-neuralnetwork-3.html  
 "NumPyでニューラルネットワークを実装してみる 多層化と誤差逆伝播法編"  
 https://deepage.net/features/numpy-neuralnetwork-4.html  
-"NumPyでニューラルネットワークを実装してみる 文字認識編"
+"NumPyでニューラルネットワークを実装してみる 文字認識編"  
 https://deepage.net/features/numpy-neuralnetwork-5.html
