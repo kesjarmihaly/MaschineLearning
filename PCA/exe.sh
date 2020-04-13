@@ -8,3 +8,7 @@ python3 model.py
 
 python3 pca.py
 
+python3 eval.py
+
+echo "Finish!"
+
