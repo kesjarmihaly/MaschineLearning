@@ -87,7 +87,7 @@ def main():
     index_gen.append("total")
 
     n_shape = 100
-    index_spe = ["{}".format(i+1) for i in range(100)]
+    index_spe = ["{}".format(i+1) for i in range(n_shape)]
     index_spe.append("total")
 
     column_gen = ["Generalization"]
@@ -101,35 +101,35 @@ def main():
 
     component = ["component={}".format(i+1) for i in range(9)]
 
-    # for fo in folds:
+    for fo in folds:
 
-    #     if fo == "1fold":
-    #         y_true = origin_img[10:]
-    #     else:
-    #         y_true = origin_img[:10]
+        if fo == "1fold":
+            y_true = origin_img[10:]
+        else:
+            y_true = origin_img[:10]
 
-    #     for co in component:
-    #         y_pred, _ = load_data(os.path.join(SAVE_OUTPUT_PATH, os.path.join(fo, co)))
-    #         gen, t_gen = Generalization(y_true, y_pred)
-    #         gen.append(t_gen)
+        for co in component:
+            y_pred, _ = load_data(os.path.join(SAVE_OUTPUT_PATH, os.path.join(fo, co)))
+            gen, t_gen = Generalization(y_true, y_pred)
+            gen.append(t_gen)
 
-    #         save_dir = os.path.join(SAVE_CSV_PATH, "gen" + "/" + fo + "/")
-    #         check_dir(save_dir)
+            save_dir = os.path.join(SAVE_CSV_PATH, "gen" + "/" + fo + "/")
+            check_dir(save_dir)
 
-    #         file_name = os.path.join(save_dir, co + ".csv")
-    #         get_csv(file_name, gen, index, column_gen)
+            file_name = os.path.join(save_dir, co + ".csv")
+            get_csv(file_name, gen, index, column_gen)
     
-    #     if fo == "1fold":
-    #         y_true = origin_img[:10]
-    #         y_pred, _ = load_data(os.path.join(SAVE_OUTPUT_PATH, check))
-    #         gen, t_gen = Generalization(y_true, y_pred)
-    #         gen.append(t_gen)
+        if fo == "1fold":
+            y_true = origin_img[:10]
+            y_pred, _ = load_data(os.path.join(SAVE_OUTPUT_PATH, check))
+            gen, t_gen = Generalization(y_true, y_pred)
+            gen.append(t_gen)
 
-    #         save_dir = os.path.join(SAVE_CSV_PATH, check + "/" + fo + "/")
-    #         check_dir(save_dir)
+            save_dir = os.path.join(SAVE_CSV_PATH, check + "/" + fo + "/")
+            check_dir(save_dir)
 
-    #         file_name = os.path.join(save_dir, "component=9" + ".csv")
-    #         get_csv(file_name, gen, index, column_gen)
+            file_name = os.path.join(save_dir, "component=9" + ".csv")
+            get_csv(file_name, gen, index, column_gen)
         
     
     for fo in folds:

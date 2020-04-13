@@ -10,5 +10,7 @@ python3 pca.py
 
 python3 eval.py
 
+python3 make_graph.py
+
 echo "Finish!"
 
