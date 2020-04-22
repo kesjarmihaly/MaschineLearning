@@ -123,10 +123,8 @@ def train(x_train, x_test, epochs, upscale_factor, device, pre_model, save_image
 
     writer = SummaryWriter()
 
-    state = torch.load(pre_model)
-
     model_G = Generator(upscale_factor)
-    model_G.load_state_dict(state['state_dict'])
+    model_G.load_state_dict(torch.load(pre_model))
     model_G = model_G.to(device)
 
     optimizer_G = torch.optim.Adam(model_G.parameters(),
