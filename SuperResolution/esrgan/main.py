@@ -179,7 +179,7 @@ def train(x_train, x_test, epochs, upscale_factor, device, pre_model, save_image
         writer.add_scalar('train/loss_G', result["train/loss_G"][-1], epoch)
         writer.add_scalar('train/loss_D', result["train/loss_D"][-1], epoch)
 
-        if epoch % 1 == 0 or epoch == epochs - 1:
+        if epoch % 5 == 0 or epoch == epochs - 1:
 
             with torch.no_grad():
                 print("test step")
@@ -241,9 +241,9 @@ def arg_parser():
 
     parser.add_argument('--image_path', type=str, default="esr_gan/images")
 
-    parser.add_argument('--pre_epochs', type=int, default=5)
+    parser.add_argument('--pre_epochs', type=int, default=50)
 
-    parser.add_argument('--epochs', type=int, default=5)
+    parser.add_argument('--epochs', type=int, default=50)
 
     parser.add_argument('--upscale_factor', type=int, default=4)
 

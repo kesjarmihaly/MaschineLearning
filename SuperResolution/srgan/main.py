@@ -248,9 +248,9 @@ def arg_parser():
 
     parser.add_argument('--image_path', type=str, default="sr_gan/images")
 
-    parser.add_argument('--pre_epochs', type=int, default=10)
+    parser.add_argument('--pre_epochs', type=int, default=50)
 
-    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--epochs', type=int, default=50)
 
     parser.add_argument('--upscale_factor', type=int, default=4)
 
