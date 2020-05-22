@@ -1,2 +1,32 @@
-# 超解像
-低解像の画像から高解像の画像を生成する技術を超解像といいますが、今回はSRGANとESRGANという深層学習ベースのモデルによって行います。入力データは正解データを線形補間によって1/4に縮小した画像です。実験してはみましたが、あまり良い結果を得られなかったので、もう少しパラメータ調整が必要かもしれません。ESRGANはSRGANの拡張版で、GeneratorにResidual BlockにResidual in Residual Dense Blockをとりいれ、Discriminatorは実画像と偽画像の差を学習するようにしているようです。本プログラムではGANを用いた超解像技術しか行いませんが、バイキュービック補間やトリキュービック補間等を用いて拡大したした画像との評価値を比較してみても面白いかもしれません。
+# SRGAN
+
+pytorchによるSRGANの実装プログラムです（論文とは少し実装方法が異なっているかもしれませんが…）。データセットはSTL10を用いています。最初にl1ノルムを用いてプレトレインします。l1ノルムにしたのは、Generatorの学習が安定したからです。次にSRGANによって超解像を行います。損失や評価値(psnr, ssim)はすべてtensorboardを用いて可視化されます。また、tensorboardから".csv"ファイルが取得できるので、結果として利用してください。
+
+## Requirement
+```
+torch
+torchvision
+scikit-image
+Pillow
+tensorboard
+tqdm
+```
+
+## Usage
+以下のコマンドで実行できます。メモリが足りない場合、コマンドラインからバッチサイズを変更してください。 
+>python3 main.py
+
+tensorboardの起動は以下のコマンドで可能です。
+>tensorboard --logdir=runs
+
+## Reference
+[1] Christian Ledig et.al. "Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network"  
+arXiv:1609.04802v5 25 May 2017  
+
+[2]【Intern CV Report】超解像の歴史探訪 -SRGAN編-  
+https://buildersbox.corp-sansan.com/entry/2019/04/29/110000
+  
+[3] SRGANを用いた超解像
+https://medium.com/@crosssceneofwindff/srgan%E3%82%92%E7%94%A8%E3%81%84%E3%81%9F%E8%B6%85%E8%A7%A3%E5%83%8F-cf7fac787729  
+
+
